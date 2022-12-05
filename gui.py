@@ -78,6 +78,8 @@ class App(customtkinter.CTk):
             f_types = [('Jpg Files', '*.jpg')]
             filename = filedialog.askopenfilename(filetypes=f_types)
             img = ImageTk.PhotoImage(file=filename)
+            img.height=500
+            img.width=500
             self.home_frame_image=tk.Label(self.home_frame,image=img)
             self.home_frame_image.grid(row=1,column=0)
 
