@@ -1,6 +1,9 @@
+from tkinter import filedialog
+from tkinter.filedialog import askopenfile
+import tkinter as tk
 import customtkinter
 import os
-from PIL import Image
+from PIL import Image,ImageTk
 
 
 class App(customtkinter.CTk):
@@ -8,7 +11,7 @@ class App(customtkinter.CTk):
         super().__init__()
 
         self.title("image_example.py")
-        self.geometry("900x700")
+        self.geometry("1500x1000")
 
         # set grid layout 1x2
         self.grid_rowconfigure(0, weight=1)
@@ -61,15 +64,24 @@ class App(customtkinter.CTk):
         self.home_frame_large_image_label = customtkinter.CTkLabel(self.home_frame, text="", image=self.large_test_image)
         self.home_frame_large_image_label.grid(row=0, column=0, padx=20, pady=10)
 
-        self.home_frame_button_1 = customtkinter.CTkButton(self.home_frame, text="", image=self.image_icon_image)
-        self.home_frame_button_1.grid(row=1, column=0, padx=20, pady=10)
-        self.home_frame_button_2 = customtkinter.CTkButton(self.home_frame, text="CTkButton", image=self.image_icon_image, compound="right")
-        self.home_frame_button_2.grid(row=2, column=0, padx=20, pady=10)
-        self.home_frame_button_3 = customtkinter.CTkButton(self.home_frame, text="CTkButton", image=self.image_icon_image, compound="top")
-        self.home_frame_button_3.grid(row=3, column=0, padx=20, pady=10)
-        self.home_frame_button_4 = customtkinter.CTkButton(self.home_frame, text="CTkButton", image=self.image_icon_image, compound="bottom", anchor="w")
-        self.home_frame_button_4.grid(row=4, column=0, padx=20, pady=10)
+        self.home_frame_button_1 = customtkinter.CTkButton(self.home_frame, text="", image=self.image_icon_image,command=lambda:upload_file())
+        self.home_frame_button_1.grid(row=2, column=0, padx=20, pady=10)
+       
 
+
+        #upload image 
+
+
+        
+        def upload_file():
+            global img
+            f_types = [('Jpg Files', '*.jpg')]
+            filename = filedialog.askopenfilename(filetypes=f_types)
+            img = ImageTk.PhotoImage(file=filename)
+            self.home_frame_image=tk.Label(self.home_frame,image=img)
+            self.home_frame_image.grid(row=1,column=0)
+
+           
         # create second frame
         self.second_frame = customtkinter.CTkFrame(self, corner_radius=0, fg_color="transparent")
 
