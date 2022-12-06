@@ -4,6 +4,7 @@ from PIL import Image,ImageTk
 import tkinter as tk
 import os
 
+
 class Home(customtkinter.CTkFrame):
     def __init__(self, *args,
                  width: int = 100,
@@ -20,7 +21,8 @@ class Home(customtkinter.CTkFrame):
 
         self.large_image_label = customtkinter.CTkLabel(self, text="", image=self.large_test_image)
         self.large_image_label.grid(row=0, column=0, padx=20, pady=10)
-
+        self.uploaded_image = customtkinter.CTkLabel(self, text="")
+        self.uploaded_image.grid(row=1, column=0, padx=20, pady=10)
         self.home_frame_button_1 = customtkinter.CTkButton(self, text="", image=self.image_icon_image,command=lambda:upload_file())
         self.home_frame_button_1.grid(row=2, column=0, padx=20, pady=10)
 
@@ -32,5 +34,5 @@ class Home(customtkinter.CTkFrame):
             img = ImageTk.PhotoImage(file=filename)
             img.height=500
             img.width=500
-            self.home_frame_image=tk.Label(self.home_frame,image=img)
+            self.home_frame_image=tk.Label(self.uploaded_image,image=img)
             self.home_frame_image.grid(row=1,column=0)
