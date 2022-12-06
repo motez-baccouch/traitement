@@ -3,6 +3,7 @@ from tkinter import filedialog
 from PIL import Image,ImageTk
 import tkinter as tk
 import os
+from utils.functions import images
 
 class Home(customtkinter.CTkFrame):
     def __init__(self, *args,
@@ -29,8 +30,13 @@ class Home(customtkinter.CTkFrame):
             global img
             f_types = [('Jpg Files', '*.jpg')]
             filename = filedialog.askopenfilename(filetypes=f_types)
-            img = ImageTk.PhotoImage(file=filename)
-            img.height=500
-            img.width=500
-            self.home_frame_image=tk.Label(self.home_frame,image=img)
-            self.home_frame_image.grid(row=1,column=0)
+            image= Image.open(filename)
+            
+            resize_image = images.set_max_height(image , maxHeight=250)
+            
+            img = ImageTk.PhotoImage(resize_image)
+            
+    
+
+            self.display_image=tk.Label(self,image=img, width=250, height= 250)
+            self.display_image.grid(row=1,column=0)
