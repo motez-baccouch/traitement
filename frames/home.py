@@ -11,10 +11,10 @@ class Home(customtkinter.CTkFrame):
                  **kwargs):
         super().__init__(*args, width=width, height=height, **kwargs)
 
-        image_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), "test_images")
+        image_path = os.path.join(os.getcwd(), "test_images")
 
         self.image_icon_image = customtkinter.CTkImage(Image.open(os.path.join(image_path, "image_icon_light.png")), size=(20, 20))
-
+        self.large_test_image = customtkinter.CTkImage(Image.open(os.path.join(image_path, "large_test_image.png")), size=(500, 150))
 
         self.grid_columnconfigure(0, weight=1)
 
