@@ -35,8 +35,6 @@ class Home(customtkinter.CTkFrame):
             resize_image = images.set_max_height(image , maxHeight=250)
             
             img = ImageTk.PhotoImage(resize_image)
-            
-    
 
             self.display_image=tk.Label(self,image=img, width=250, height= 250)
             self.display_image.grid(row=1,column=0)
