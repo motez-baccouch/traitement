@@ -19,11 +19,11 @@ class Segmentation(customtkinter.CTkFrame):
 
         self.grid_columnconfigure(0, weight=1)
 
-        self.home_frame_button_1 = customtkinter.CTkButton(self, text="segmentation",command=lambda:upload_file())
-        self.home_frame_button_1.grid(row=2, column=0, padx=20, pady=10)
+        self.title= customtkinter.CTkLabel(self,  text="Segmentation",font=customtkinter.CTkFont( family = "Montserrat", size = 40))
+        self.title.grid(row=0, column=0)
 
         self.upload_button = customtkinter.CTkButton(self, text="Upload", command=lambda:upload_file())
-        self.upload_button.grid(row=3, column=0)
+        self.upload_button.grid(row=3, column=0, pady=10)
 
         #transformation options
         self.transformation_options = customtkinter.CTkFrame(self)
