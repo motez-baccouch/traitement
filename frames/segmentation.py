@@ -55,7 +55,7 @@ class Segmentation(customtkinter.CTkFrame):
         self.transform_button.grid(row= 1, column=3, padx=20, pady=10)
 
         # open image folde
-        self.open_button= customtkinter.CTkButton(self,text="Open Image", command=lambda:openImage() )
+        self.open_button= customtkinter.CTkButton(self,text="Open Image Folder", command=lambda:openImage() )
         # self.open_button.grid(row=7, column=0, pady=10)
 
         def upload_file():
