@@ -4,6 +4,11 @@ from numpy import int32
 
 
 def egalisation(img,filename,maxVal=255, magicNum='P2'):
+
+  """
+  uses read_pgm and writes by itself
+  """
+
   hist = calculators.histo(img)
   cum = calculators.cumule(img)
   n1 = []

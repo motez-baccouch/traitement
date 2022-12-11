@@ -63,13 +63,10 @@ def ppmread(filename):
     img = []
     buf = f.read()
     elem = buf.split()
-    print(elem)
     if len(elem) != width*height*3:
-        print('Error in number of pixels')
         exit()
     for i in range(height):
         tmpList = []
-        print(elem[i*width*3])
         for j in range(width):
             colorList = []
             for k in range(0, 3):
