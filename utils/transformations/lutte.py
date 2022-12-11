@@ -2,6 +2,11 @@ import math
 from numpy import int32
 
 def lutte(a, b ,filename, img , maxVal=255, magicNum='P2' ): 
+
+  """
+  uses read_pgm and writes by itself
+  """
+
   pente1= math.floor(a["y"]/a["x"])
   pente2 = math.floor((b["y"]-a["y"] )/ (b["x"]-a["x"]))
   pente3 = math.floor((255-b["y"])/(255-b["x"]))

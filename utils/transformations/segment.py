@@ -1,4 +1,10 @@
+
 def segement(img, seuil=255, method="ET"):
+
+    """
+    uses pgmreact and pgmwrite
+    """
+
     (imgMatrix, width, height) = img
 
     generatedImg = []

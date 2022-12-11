@@ -3,6 +3,10 @@ from numpy import int32
 
 def pgm_filtre_moyenne(img, filename, maxVal=255, magicNum="P2", filterSize=3):
 
+    """
+        uses read_pgm and writes by itself
+    """
+
     img = int32(img).tolist()
 
     f = open(filename + ".pgm", 'w')
