@@ -34,3 +34,30 @@ def checkPixelOu(pixel, seuil=255):
         if(int(pixel[k]) > seuil):
             return ['255','255','255']
     return ['0','0','0']
+
+def segementParDefaut(img, seuil=[255,255,255]):
+    """
+    uses pgmreact and pgmwrite
+    """
+    (imgMatrix, width, height) = img
+    generatedImg = []
+    for i in range(height):
+        generatedLine = []
+        line = imgMatrix[i]
+        for j in range(width):
+            pixelToAdd = []
+            pixel = line[j]
+            pixelToAdd= checkPixelDefault(pixel, seuil)
+            generatedLine.append(pixelToAdd)
+        generatedImg.append(generatedLine)
+
+    return (generatedImg, width, height)
+
+def checkPixelDefault(pixel , seuil):
+    pixelToReturn = []
+    for k in range(3):
+        if(int(pixel[k]) > seuil[k]):
+            pixelToReturn.append(255)
+        else:
+            pixelToReturn.append(0)
+    return pixelToReturn

@@ -1,4 +1,4 @@
-import calculators
+from . import calculators
 import numpy as np
 from numpy import int32
 
