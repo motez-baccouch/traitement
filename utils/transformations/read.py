@@ -1,4 +1,5 @@
 from numpy import array
+from matplotlib import pyplot as plt
 
 def pgmread(filename):
   f = open(filename,'r')
@@ -77,3 +78,10 @@ def ppmread(filename):
         img.append(tmpList) 
 
     return (array(img), width, height)
+
+
+# for reading files without returning matrix
+def read_pgm(path):
+    with open(path, 'rb') as pgmf:
+        im = plt.imread(pgmf)
+    return im

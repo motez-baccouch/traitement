@@ -26,10 +26,13 @@ class Home(customtkinter.CTkFrame):
         self.home_frame_button_1 = customtkinter.CTkButton(self, text="", image=self.image_icon_image,command=lambda:upload_file())
         self.home_frame_button_1.grid(row=10, column=0, padx=20, pady=10)
 
+        self.information_frame = customtkinter.CTkFrame(self, width= self.winfo_width())
+        self.information_frame.grid(row= 11,column=0)
+
         #upload image 
         def upload_file():
             global img
-            f_types = [('Jpg Files', '*.jpg')]
+            f_types = [('Black and white files', '*.pgm'),('Colored files','*.ppm')]
             filename = filedialog.askopenfilename(filetypes=f_types)
             image= Image.open(filename)
 
