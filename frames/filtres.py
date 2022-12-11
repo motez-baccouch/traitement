@@ -112,8 +112,8 @@ class Filtres(customtkinter.CTkFrame):
             method = value
             if method=="LUT": 
                 self.slider1.grid(row=1, column=0, pady=5)
-                self.slider2.grid(row=1, column=0, pady=5)
-                self.slider3.grid(row=1, column=0, pady=5)
+                self.slider2.grid(row=2, column=0, pady=5)
+                self.slider3.grid(row=3, column=0, pady=5)
             else: 
                 self.slider1.grid_forget()
                 self.slider2.grid_forget()
