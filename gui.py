@@ -16,7 +16,7 @@ class App(customtkinter.CTk):
         super().__init__()
 
         self.title("image_example.py")
-        self.geometry("1000x900")
+        self.geometry("900x900")
 
         # set grid layout 1x2
         self.grid_rowconfigure(0, weight=1)

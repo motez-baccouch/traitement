@@ -20,16 +20,19 @@ class Filtres(customtkinter.CTkFrame):
 
         self.grid_columnconfigure(0, weight=1)
 
-        self.home_frame_button_1 = customtkinter.CTkButton(self, text="segmentation",command=lambda:upload_file())
-        self.home_frame_button_1.grid(row=2, column=0, padx=20, pady=10)
+        self.title= customtkinter.CTkLabel(self,  text="Filtres",font=customtkinter.CTkFont( family = "Montserrat", size = 40))
+        self.title.grid(row=0, column=0)
 
         self.upload_button = customtkinter.CTkButton(self, text="Upload", command=lambda:upload_file())
         self.upload_button.grid(row=3, column=0)
 
+        self.input_image = customtkinter.CTkLabel(self, width=250, height= 250,text="")
+        self.input_image.grid(row=4, column=0)
+
         #transformation options
         self.transformation_options = customtkinter.CTkFrame(self)
         self.transformation_options.grid_columnconfigure(3, weight=1)
-        # self.transformation_options.grid(row=5, column=0, padx=20, pady=10)
+        self.transformation_options.grid(row=5, column=0, padx=20, pady=10)
 
 
         #transformation method
@@ -40,16 +43,16 @@ class Filtres(customtkinter.CTkFrame):
         # transformation sliders
         self.sliders_container = customtkinter.CTkFrame(self.transformation_options)
         self.sliders_container.grid(row= 1, column=2, padx=20, pady=10)
-        self.slider = customtkinter.CTkSlider(self.sliders_container, from_=0, to=12,number_of_steps=12)
+        self.slider = customtkinter.CTkSlider(self.sliders_container, from_=0, to=255)
         self.slider.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
         self.slider.grid(row=0, column=0, pady=5)
-        self.slider1 = customtkinter.CTkSlider(self.sliders_container, from_=0, to=12,number_of_steps=12)
+        self.slider1 = customtkinter.CTkSlider(self.sliders_container, from_=0, to=255)
         self.slider1.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
         self.slider1.grid(row=1, column=0, pady=5)
-        self.slider2 = customtkinter.CTkSlider(self.sliders_container, from_=0, to=12,number_of_steps=12)
+        self.slider2 = customtkinter.CTkSlider(self.sliders_container, from_=0, to=255)
         self.slider2.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
         self.slider2.grid(row=2, column=0, pady=5)
-        self.slider3 = customtkinter.CTkSlider(self.sliders_container, from_=0, to=12,number_of_steps=12)
+        self.slider3 = customtkinter.CTkSlider(self.sliders_container, from_=0, to=255)
         self.slider3.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
         self.slider3.grid(row=3, column=0, pady=5)
         
@@ -75,8 +78,7 @@ class Filtres(customtkinter.CTkFrame):
             img = ImageTk.PhotoImage(resize_image)
             
             # display image
-            self.input_image = tk.Label(self,image=img, width=250, height= 250)
-            self.input_image.grid(row=4, column=0)
+            self.input_image.configure(image=img)
 
             self.transformation_options.grid(row=5, column=0, padx=20, pady=10)
 
@@ -89,16 +91,16 @@ class Filtres(customtkinter.CTkFrame):
             method = self.method_selector.get()
 
             if method=="LUT": 
-                lutte.lutte({"x":math.floor(self.slider.get()),"y":math.floor(self.slider1.get())},{"x":math.floor(self.slider2.get()),"y":math.floor(self.slider3.get())},"out/result",imgInfo)
+                lutte.lutte({"x":math.floor(self.slider.get()),"y":math.floor(self.slider1.get())},{"x":math.floor(self.slider2.get()),"y":math.floor(self.slider3.get())},"out/filtered",imgInfo)
             elif method=="filtre mediane":
-                filtre_mediane.pgm_filtre_mediane(imgInfo,"out/result",filterSize=self.slider.get())
+                filtre_mediane.pgm_filtre_mediane(imgInfo,"out/filtered",filterSize=self.slider.get())
             else:
-                filtre_moyenne.pgm_filtre_moyenne(imgInfo,"out/result",filterSize=self.slider.get())
+                filtre_moyenne.pgm_filtre_moyenne(imgInfo,"out/filtered",filterSize=self.slider.get())
                 
                 
            
 
-            image= Image.open("out/result.pgm")
+            image= Image.open("out/filtered.pgm")
             resize_image = images.set_max_height(image , maxHeight=250)
             resultImg = ImageTk.PhotoImage(resize_image)
 
@@ -114,7 +116,12 @@ class Filtres(customtkinter.CTkFrame):
                 self.slider1.grid(row=1, column=0, pady=5)
                 self.slider2.grid(row=2, column=0, pady=5)
                 self.slider3.grid(row=3, column=0, pady=5)
+                self.slider.configure(to=255, number_of_steps=255)
+                self.slider1.configure(to=255, number_of_steps=255)
+                self.slider2.configure(to=255, number_of_steps=255)
+                self.slider3.configure(to=255, number_of_steps=255)
             else: 
+                self.slider.configure(to=12, number_of_steps=12)
                 self.slider1.grid_forget()
                 self.slider2.grid_forget()
                 self.slider3.grid_forget()

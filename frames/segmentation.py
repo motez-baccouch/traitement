@@ -25,10 +25,13 @@ class Segmentation(customtkinter.CTkFrame):
         self.upload_button = customtkinter.CTkButton(self, text="Upload", command=lambda:upload_file())
         self.upload_button.grid(row=3, column=0, pady=10)
 
+        self.input_image = customtkinter.CTkLabel(self, width=250, height= 250,text="")
+        self.input_image.grid(row=4, column=0)
+
         #transformation options
         self.transformation_options = customtkinter.CTkFrame(self)
         self.transformation_options.grid_columnconfigure(3, weight=1)
-        # self.transformation_options.grid(row=5, column=0, padx=20, pady=10)
+        self.transformation_options.grid(row=5, column=0, padx=20, pady=10)
 
 
         #transformation method
@@ -70,8 +73,7 @@ class Segmentation(customtkinter.CTkFrame):
             img = ImageTk.PhotoImage(resize_image)
             
             # display image
-            self.input_image = tk.Label(self,image=img, width=250, height= 250)
-            self.input_image.grid(row=4, column=0)
+            self.input_image.configure(image=img)
 
             self.transformation_options.grid(row=5, column=0, padx=20, pady=10)
 
