@@ -9,6 +9,7 @@ from frames.histogramme import Histogramme
 from frames.home import Home
 from frames.segmentation import Segmentation
 from frames.filtres import Filtres
+from frames.erosion import Erosion
 
 
 class App(customtkinter.CTk):
@@ -61,6 +62,11 @@ class App(customtkinter.CTk):
                                                       image=self.add_user_image, anchor="w", command=self.frame_4_button_event)
         self.frame_4_button.grid(row=4, column=0, sticky="ew")
 
+        self.frame_5_button = customtkinter.CTkButton(self.navigation_frame, corner_radius=0, height=40, border_spacing=10, text="fonctions",
+                                                      fg_color="transparent", text_color=("gray10", "gray90"), hover_color=("gray70", "gray30"),
+                                                      image=self.add_user_image, anchor="w", command=self.frame_5_button_event)
+        self.frame_5_button.grid(row=5, column=0, sticky="ew")
+
         self.appearance_mode_menu = customtkinter.CTkOptionMenu(self.navigation_frame, values=["Light", "Dark", "System"],
                                                                 command=self.change_appearance_mode_event)
         self.appearance_mode_menu.grid(row=6, column=0, padx=20, pady=20, sticky="s")
@@ -77,6 +83,9 @@ class App(customtkinter.CTk):
          # create fourth frame
         self.fourth_frame = Filtres(self, corner_radius=0, fg_color="transparent")
 
+        # create fifth frame
+        self.fifth_frame = Erosion(self, corner_radius=0, fg_color="transparent")
+
         # select default frame
         self.select_frame_by_name("home")
 
@@ -86,6 +95,7 @@ class App(customtkinter.CTk):
         self.frame_2_button.configure(fg_color=("gray75", "gray25") if name == "frame_2" else "transparent")
         self.frame_3_button.configure(fg_color=("gray75", "gray25") if name == "frame_3" else "transparent")
         self.frame_4_button.configure(fg_color=("gray75", "gray25") if name == "frame_4" else "transparent")
+        self.frame_5_button.configure(fg_color=("gray75", "gray25") if name == "frame_5" else "transparent")
 
         # show selected frame
         if name == "home":
@@ -104,6 +114,10 @@ class App(customtkinter.CTk):
             self.fourth_frame.grid(row=0, column=1, sticky="nsew")
         else:
             self.fourth_frame.grid_forget()
+        if name == "frame_5":
+            self.fifth_frame.grid(row=0, column=1, sticky="nsew")
+        else:
+            self.fifth_frame.grid_forget()
 
     def home_button_event(self):
         self.select_frame_by_name("home")
@@ -116,6 +130,9 @@ class App(customtkinter.CTk):
 
     def frame_4_button_event(self):
         self.select_frame_by_name("frame_4")
+    
+    def frame_5_button_event(self):
+        self.select_frame_by_name("frame_5")
 
     def change_appearance_mode_event(self, new_appearance_mode):
         customtkinter.set_appearance_mode(new_appearance_mode)
