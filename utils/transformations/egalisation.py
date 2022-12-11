@@ -1,6 +1,7 @@
-import calculators
+from . import calculators
 import numpy as np
 from numpy import int32
+
 
 def egalisation(img,filename,maxVal=255, magicNum='P2'):
   hist = calculators.histo(img)
@@ -55,3 +56,8 @@ def egalisation(img,filename,maxVal=255, magicNum='P2'):
         count = count + 1
     f.write('\n')
   f.close()
+  
+
+#img=read.read_pgm("C:/Users/motez/Desktop/chat.pgm")
+#print(img)
+#egalisation(img,"C:/Users/motez/Desktop/chichi")
