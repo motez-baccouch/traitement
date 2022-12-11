@@ -1,7 +1,7 @@
 import subprocess
 import sys
 
-def openFolder(path):
+def openFolder(path:str) -> None:
     if sys.platform == 'darwin':
         subprocess.check_call(['open', '--', path])
     elif sys.platform == 'linux2':
