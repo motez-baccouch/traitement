@@ -36,7 +36,7 @@ class App(customtkinter.CTk):
         # create navigation frame
         self.navigation_frame = customtkinter.CTkFrame(self, corner_radius=0)
         self.navigation_frame.grid(row=0, column=0, sticky="nsew")
-        self.navigation_frame.grid_rowconfigure(5, weight=1)
+        self.navigation_frame.grid_rowconfigure(6, weight=1)
 
         self.navigation_frame_label = customtkinter.CTkLabel(self.navigation_frame, text=" Traitement image", image=self.logo_image,
                                                              compound="left", font=customtkinter.CTkFont(size=15, weight="bold"))
@@ -69,7 +69,7 @@ class App(customtkinter.CTk):
 
         self.appearance_mode_menu = customtkinter.CTkOptionMenu(self.navigation_frame, values=["Light", "Dark", "System"],
                                                                 command=self.change_appearance_mode_event)
-        self.appearance_mode_menu.grid(row=6, column=0, padx=20, pady=20, sticky="s")
+        self.appearance_mode_menu.grid(row=7, column=0, padx=20, pady=20, sticky="s")
 
         # create home frame
         self.home_frame = Home(self, corner_radius=0, fg_color="transparent")
