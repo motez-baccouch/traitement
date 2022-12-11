@@ -92,9 +92,9 @@ class Segmentation(customtkinter.CTkFrame):
                 result=segment.segementParDefaut(imgInfo,seuil=seuil)
             else:
                 result=segment.segement(imgInfo,seuil=self.slider.get(),method=method)
-            write.ppmwrite(result, "out/out")
+            write.ppmwrite(result, "out/segment")
 
-            image= Image.open("out/out.ppm")
+            image= Image.open("out/segment.ppm")
             resize_image = images.set_max_height(image , maxHeight=250)
             resultImg = ImageTk.PhotoImage(resize_image)
 
