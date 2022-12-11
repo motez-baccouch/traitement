@@ -5,6 +5,10 @@ import tkinter as tk
 from PIL import ImageTk
 from utils.functions import images
 from utils.transformations import read,segment,write
+import subprocess
+import os
+import sys
+from utils.functions.openFolder import openFolder
 
 class Segmentation(customtkinter.CTkFrame):
     def __init__(self, *args,
@@ -50,6 +54,10 @@ class Segmentation(customtkinter.CTkFrame):
         self.transform_button = customtkinter.CTkButton(self.transformation_options, text="Transform",command=lambda:transform_file())
         self.transform_button.grid(row= 1, column=3, padx=20, pady=10)
 
+        # open image folde
+        self.open_button= customtkinter.CTkButton(self,text="Open Image", command=lambda:openImage() )
+        # self.open_button.grid(row=7, column=0, pady=10)
+
         def upload_file():
             global img
             global filename
@@ -94,6 +102,8 @@ class Segmentation(customtkinter.CTkFrame):
             self.result_image = tk.Label(self,image=resultImg, width=250, height= 250)
             self.result_image.grid(row=7, column=0)
 
+            self.open_button.grid(row=8, column=0, pady=10)
+
         def onMethodChange(value):
             method = value
             if method=="default": 
@@ -103,5 +113,7 @@ class Segmentation(customtkinter.CTkFrame):
                 self.slider1.grid_forget()
                 self.slider2.grid_forget()
 
+        def openImage():
+            openFolder(os.path.join(os.getcwd(),"out"))
 
 
